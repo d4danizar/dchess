@@ -22,7 +22,7 @@ export default function TrainerPage() {
   const [undoneHistory, setUndoneHistory] = useState<string[]>([]);
   const [moveFrom, setMoveFrom] = useState<string | null>(null);
   const [optionSquares, setOptionSquares] = useState({});
-  const [hintArrow, setHintArrow] = useState<[string, string, string] | null>(null);
+  const [hintArrow, setHintArrow] = useState<{startSquare: string, endSquare: string, color: string} | null>(null);
 
   if (!opening) {
     return (
@@ -211,7 +211,11 @@ export default function TrainerPage() {
     const correctMove = possibleMoves.find((m: any) => m.san === expectedSan);
     
     if (correctMove) {
-      setHintArrow([correctMove.from, correctMove.to, "rgba(59, 130, 246, 0.8)"]);
+      setHintArrow({
+        startSquare: correctMove.from, 
+        endSquare: correctMove.to, 
+        color: "rgba(59, 130, 246, 0.8)"
+      });
     }
   };
 
@@ -382,13 +386,12 @@ export default function TrainerPage() {
               onPieceDrop: onDrop,
               onSquareClick: onSquareClick,
               squareStyles: optionSquares,
-              boardOrientation: opening?.playerColor || "white",
+              boardOrientation: opening?.playerColor === "black" ? "black" : "white",
               darkSquareStyle: { backgroundColor: '#475569' },
               lightSquareStyle: { backgroundColor: '#e2e8f0' },
-              animationDurationInMs: 250
-            }} 
-            // @ts-ignore
-            customArrows={hintArrow ? [hintArrow] as any : []} />
+              animationDurationInMs: 250,
+              arrows: hintArrow ? [hintArrow] : []
+            }} />
           </div>
         </div>
       </div>
