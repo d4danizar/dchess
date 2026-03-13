@@ -113,7 +113,6 @@ export default function TrainerPage() {
 
       // Strict sequence validation
       if (attemptedMove.san !== expectedSan) {
-        alert("Salah langkah! Coba ingat lagi openingnya.");
         return false;
       }
 
