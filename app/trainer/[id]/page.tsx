@@ -293,10 +293,10 @@ export default function TrainerPage() {
   }
 
   return (
-    <div className="flex w-full h-screen bg-gray-900 text-white font-sans overflow-hidden">
+    <div className="min-h-screen flex flex-col w-full bg-gray-900 text-white font-sans overflow-y-auto lg:flex-row lg:h-screen lg:overflow-hidden">
 
       {/* Column 1: Left Sidebar - Lessons (20%) */}
-      <div className="w-1/5 flex-shrink-0 border-r border-gray-800 bg-gray-950 flex flex-col h-screen overflow-y-auto shadow-2xl relative z-10">
+      <div className="w-full lg:w-1/5 order-3 lg:order-1 p-4 lg:p-0 border-t border-gray-700 lg:border-t-0 lg:border-r lg:border-gray-800 mt-4 lg:mt-0 flex-shrink-0 bg-gray-950 flex flex-col lg:h-full lg:overflow-y-auto shadow-2xl relative z-10">
         <div className="p-6 pb-4 border-b border-gray-800 sticky top-0 bg-gray-950/95 backdrop-blur z-20">
           <a href="/" className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-white transition-colors mb-4 group font-medium">
             <ChevronLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
@@ -336,7 +336,7 @@ export default function TrainerPage() {
       </div>
 
       {/* Column 2: Middle - Chessboard (40%) */}
-      <div className="w-2/5 flex-shrink-0 flex items-center justify-center p-6 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-800 via-gray-900 to-gray-950 relative">
+      <div className="w-full lg:w-2/5 order-1 lg:order-2 p-4 lg:p-6 flex flex-col lg:flex-row items-center justify-center flex-shrink-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-800 via-gray-900 to-gray-950 relative">
 
         {/* Notification Toast */}
         <div className={`transform transition-all duration-500 ease-out absolute top-8 left-1/2 -translate-x-1/2 z-50 ${isFreePlay ? "translate-y-0 opacity-100" : "-translate-y-8 opacity-0 pointer-events-none"}`}>
@@ -352,7 +352,7 @@ export default function TrainerPage() {
           </div>
         </div>
 
-        <div className={`w-full aspect-square rounded-2xl p-4 md:p-6 border transition-all duration-700 shadow-2xl ${isFreePlay
+        <div className={`w-full max-w-[400px] lg:max-w-none mx-auto aspect-square rounded-2xl p-4 md:p-6 border transition-all duration-700 shadow-2xl ${isFreePlay
             ? "bg-emerald-950/20 border-emerald-900/30 shadow-[0_0_50px_rgba(16,185,129,0.05)]"
             : "bg-gray-800/30 border-gray-700/50"
           }`}>
@@ -372,7 +372,7 @@ export default function TrainerPage() {
       </div>
 
       {/* Column 3: Right Sidebar - Notation & Controls (40%) */}
-      <div className="w-2/5 flex-shrink-0 p-6 flex flex-col border-l border-gray-800 bg-gray-800/50 h-screen">
+      <div className="w-full lg:w-2/5 order-2 lg:order-3 p-4 lg:p-6 flex flex-col gap-4 lg:gap-0 lg:border-l lg:border-gray-700 bg-gray-800/50 lg:h-full lg:overflow-y-auto flex-shrink-0">
         
         {/* Mission Briefing */}
         <div className="mb-4">
