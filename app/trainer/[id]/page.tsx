@@ -22,6 +22,7 @@ export default function TrainerPage() {
   const [undoneHistory, setUndoneHistory] = useState<string[]>([]);
   const [moveFrom, setMoveFrom] = useState<string | null>(null);
   const [optionSquares, setOptionSquares] = useState({});
+  const [hintArrow, setHintArrow] = useState<[string, string, string] | null>(null);
 
   if (!opening) {
     return (
@@ -80,6 +81,7 @@ export default function TrainerPage() {
     // Reset click highlighting
     setMoveFrom(null);
     setOptionSquares({});
+    setHintArrow(null);
 
     const playerColor = opening?.playerColor === "black" ? "b" : "w";
     if (!isFreePlay && game.turn() !== playerColor) {
@@ -198,6 +200,21 @@ export default function TrainerPage() {
     handlePlayerMove(moveFrom, square);
   };
 
+  const showHint = () => {
+    if (isFreePlay || showModal) return;
+    
+    const expectedSan = currentLesson.sequence[moveIndex];
+    if (!expectedSan) return;
+
+    const gameCopy = new Chess(game.fen());
+    const possibleMoves = gameCopy.moves({ verbose: true });
+    const correctMove = possibleMoves.find((m: any) => m.san === expectedSan);
+    
+    if (correctMove) {
+      setHintArrow([correctMove.from, correctMove.to, "rgba(59, 130, 246, 0.8)"]);
+    }
+  };
+
   const stepBack = () => {
     const undoneMove = game.undo();
     if (undoneMove) {
@@ -220,6 +237,7 @@ export default function TrainerPage() {
       setUndoneHistory(prev => [...prev, ...historyToPush]);
       setOptionSquares({});
       setMoveFrom(null);
+      setHintArrow(null);
       if (!isFreePlay) {
         setMoveIndex(prev => Math.max(0, prev - decrements));
         setShowModal(false); // Hide modal if stepping back from end state
@@ -236,6 +254,7 @@ export default function TrainerPage() {
         setUndoneHistory(prev => prev.slice(0, -1));
         setOptionSquares({});
         setMoveFrom(null);
+        setHintArrow(null);
         if (!isFreePlay) {
           setMoveIndex(prev => prev + 1);
         }
@@ -251,6 +270,7 @@ export default function TrainerPage() {
     setUndoneHistory([]);
     setIsFreePlay(false);
     setShowModal(false);
+    setHintArrow(null);
   };
 
   const selectLesson = (index: number) => {
@@ -262,6 +282,7 @@ export default function TrainerPage() {
     setUndoneHistory([]);
     setIsFreePlay(false);
     setShowModal(false);
+    setHintArrow(null);
   };
 
   const renderHistory = () => {
@@ -365,7 +386,9 @@ export default function TrainerPage() {
               darkSquareStyle: { backgroundColor: '#475569' },
               lightSquareStyle: { backgroundColor: '#e2e8f0' },
               animationDurationInMs: 250
-            }} />
+            }} 
+            // @ts-ignore
+            customArrows={hintArrow ? [hintArrow] as any : []} />
           </div>
         </div>
       </div>
@@ -387,7 +410,16 @@ export default function TrainerPage() {
         </div>
 
         {/* Control Buttons */}
-        <div className="flex justify-between gap-4 mt-4">
+        <div className="flex justify-between gap-3 mt-4">
+          <button
+            onClick={showHint}
+            className="flex-1 group flex items-center justify-center gap-2 py-4 bg-blue-900/50 hover:bg-blue-800/70 border border-blue-500/40 hover:border-blue-500 transition-all rounded-xl shadow-xl active:scale-95 disabled:opacity-50 font-bold text-blue-200"
+            disabled={isFreePlay || showModal}
+          >
+            <span className="text-xl leading-none">💡</span>
+            <span className="hidden sm:inline">Hint</span>
+          </button>
+
           <button
             onClick={stepBack}
             disabled={moveIndex === 0 && !isFreePlay && undoneHistory.length === 0}
