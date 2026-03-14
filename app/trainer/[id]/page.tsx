@@ -23,6 +23,7 @@ export default function TrainerPage() {
   const [moveFrom, setMoveFrom] = useState<string | null>(null);
   const [optionSquares, setOptionSquares] = useState({});
   const [hintArrow, setHintArrow] = useState<{startSquare: string, endSquare: string, color: string} | null>(null);
+  const [showFreePlayToast, setShowFreePlayToast] = useState(false);
 
   if (!opening) {
     return (
@@ -41,6 +42,17 @@ export default function TrainerPage() {
   useEffect(() => {
     setIsMounted(true);
   }, []);
+
+  // Free play toast temporary logic
+  useEffect(() => {
+    if (isFreePlay) {
+      setShowFreePlayToast(true);
+      const timer = setTimeout(() => setShowFreePlayToast(false), 3000);
+      return () => clearTimeout(timer);
+    } else {
+      setShowFreePlayToast(false);
+    }
+  }, [isFreePlay]);
 
   // Function to safely modify the game state
   const makeAMove = useCallback(
@@ -363,16 +375,10 @@ export default function TrainerPage() {
       <div className="w-full lg:w-2/5 order-1 lg:order-2 p-4 lg:p-6 flex flex-col lg:flex-row items-center justify-center flex-shrink-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-gray-800 via-gray-900 to-gray-950 relative">
 
         {/* Notification Toast */}
-        <div className={`transform transition-all duration-500 ease-out absolute top-8 left-1/2 -translate-x-1/2 z-50 ${isFreePlay ? "translate-y-0 opacity-100" : "-translate-y-8 opacity-0 pointer-events-none"}`}>
-          <div className="bg-emerald-950/90 backdrop-blur-md border border-emerald-500/30 rounded-full px-6 py-3 flex items-center shadow-[0_0_30px_rgba(16,185,129,0.15)] whitespace-nowrap">
-            <div className="p-1 bg-emerald-500/20 rounded-full shrink-0 mr-3">
-              <Check className="w-4 h-4 text-emerald-400" />
-            </div>
-            <div>
-              <p className="text-emerald-100/90 text-sm font-medium tracking-wide">
-                <strong className="text-emerald-300">Free Play Mode:</strong> You can now move both pieces natively.
-              </p>
-            </div>
+        <div className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ease-out ${showFreePlayToast ? "translate-y-0 opacity-100" : "-translate-y-8 opacity-0 pointer-events-none"}`}>
+          <div className="bg-emerald-500 text-emerald-950 font-bold px-6 py-3 rounded-full flex items-center shadow-[0_10px_40px_rgba(16,185,129,0.3)] border border-emerald-400 whitespace-nowrap">
+            <Check className="w-5 h-5 mr-2" />
+            Free Play Mode Enabled
           </div>
         </div>
 
@@ -401,7 +407,14 @@ export default function TrainerPage() {
         
         {/* Mission Briefing */}
         <div className="mb-4">
-          <h2 className="text-xl font-bold text-blue-400 mb-2">{currentLesson.title}</h2>
+          <div className="flex items-center gap-3 mb-2">
+            <h2 className="text-xl font-bold text-blue-400">{currentLesson.title}</h2>
+            {isFreePlay && (
+              <span className="bg-emerald-950/50 text-emerald-400 border border-emerald-500/30 text-xs font-bold px-2 py-1 rounded-md shadow-sm">
+                Free Play
+              </span>
+            )}
+          </div>
           <p className="text-sm text-gray-300 leading-relaxed mb-6">{currentLesson.description}</p>
         </div>
 
