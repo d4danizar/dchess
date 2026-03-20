@@ -285,6 +285,56 @@ export const openingsData: Record<string, OpeningData> = {
         title: "2. Trap: The Muzio Gambit",
         description: "Pure chaos. If Black pushes g5 to defend their pawn, we ignore it, castle (O-O), and let them take our Knight! Massive attack follows.",
         sequence: ["e4", "e5", "f4", "exf4", "Nf3", "g5", "Bc4", "g4", "O-O", "gxf3", "Qxf3"]
+      },
+      // --- NEW ACCEPTED VARIATIONS ---
+      {
+        id: "kg-kieseritzky",
+        title: "3. The Kieseritzky Gambit",
+        description: "The absolute main line. Black defends with g5. We play h4 to break their pawn chain, forcing g4, then jump our Knight to e5.",
+        sequence: ["e4", "e5", "f4", "exf4", "Nf3", "g5", "h4", "g4", "Ne5"]
+      },
+      {
+        id: "kg-allgaier",
+        title: "4. Trap: The Allgaier Sacrifice",
+        description: "Instead of Ne5, we jump to g5 and SACRIFICE the Knight on f7! It forces the Black King into the open center. Extremely dangerous.",
+        sequence: ["e4", "e5", "f4", "exf4", "Nf3", "g5", "h4", "g4", "Ng5", "h6", "Nxf7", "Kxf7"],
+      },
+      {
+        id: "kg-fischer",
+        title: "5. Facing the Fischer Defense",
+        description: "Bobby Fischer's famous defense. Black plays d6 before g5 to prevent our Knight from jumping to e5. A solid, positional game ensues.",
+        sequence: ["e4", "e5", "f4", "exf4", "Nf3", "d6", "d4", "g5", "h4", "g4", "Ng1"]
+      },
+      {
+        id: "kg-bishops-gambit",
+        title: "6. The Bishop's Gambit",
+        description: "We don't play Nf3! We play Bc4, allowing Qh4+. We lose castling rights by moving Kf1, but gain immense development speed.",
+        sequence: ["e4", "e5", "f4", "exf4", "Bc4", "Qh4+", "Kf1"]
+      },
+      {
+        id: "kg-bishops-trap",
+        title: "7. Trap: Bishop's Gambit (Breyer Var)",
+        description: "After Kf1, if Black plays blindly, we hunt their Queen! Let's trap it if they try to be greedy.",
+        sequence: ["e4", "e5", "f4", "exf4", "Bc4", "Qh4+", "Kf1", "Nc6", "Nf3", "Qh5", "d4", "d6", "Bxf4"],
+      },
+      // --- NEW DECLINED VARIATIONS ---
+      {
+        id: "kg-falkbeer",
+        title: "8. The Falkbeer Countergambit",
+        description: "Black declines the gambit and strikes the center with d5. We MUST take on d5, not f4, or we get crushed.",
+        sequence: ["e4", "e5", "f4", "d5", "exd5", "e4", "d3", "Nf6", "dxe4", "Nxe4", "Nf3"]
+      },
+      {
+        id: "kg-classical",
+        title: "9. The Classical Defense",
+        description: "Black declines by playing Bc5, eyeing our weak g1 square and preventing us from castling. We develop solidly with Nf3.",
+        sequence: ["e4", "e5", "f4", "Bc5", "Nf3", "d6", "Nc3", "Nf6", "Bc4", "Nc6", "d3"]
+      },
+      {
+        id: "kg-miles",
+        title: "10. The Miles Defense",
+        description: "Black plays very passively with d6, simply declining the pawn. We develop normally, keeping the tension.",
+        sequence: ["e4", "e5", "f4", "d6", "Nf3", "Nc6", "Bc4", "Be7", "O-O", "Nf6", "d3"]
       }
     ]
   },
@@ -467,6 +517,97 @@ export const openingsData: Record<string, OpeningData> = {
         title: "3. The Accelerated Dragon",
         description: "Skip d6 and push g6 immediately. This forces White to react differently and prepares a rapid strike on the center.",
         sequence: ["e4", "c5", "Nf3", "Nc6", "d4", "cxd4", "Nxd4", "g6", "c4", "Bg7", "Be3", "Nf6"]
+      }
+    ]
+  },
+  // ==========================================
+  // THE ITALIAN GAME (White)
+  // ==========================================
+  "italian-game": {
+    title: "Italian Game",
+    description: "Mahakarya klasik. Elegan namun mematikan. Fokus mendikte kontrol pusat dan secara presisi menargetkan petak terlemah Hitam di f7 sejak awal.",
+    playerColor: "white",
+    lessons: [
+      // --- JALAN TOL 1: GIUOCO PIANO (3... Bc5) ---
+      {
+        id: "ita-gp-pianissimo",
+        title: "1. Giuoco Pianissimo (Mainline)",
+        description: "Permainan super solid dan posisional. Mengamankan e4, mencegah serangan balik, dan bersiap memanuver Kuda ke sayap raja. Sabar, namun menekan jangka panjang.",
+        sequence: ["e4", "e5", "Nf3", "Nc6", "Bc4", "Bc5", "d3", "Nf6", "c3", "d6", "O-O"]
+      },
+      {
+        id: "ita-gp-classical",
+        title: "2. Classical Center Attack",
+        description: "Lebih agresif. Putih menggunakan pion c3 untuk meledakkan pusat dengan d4. Jika Hitam tidak hati-hati, Putih akan mendominasi seluruh ruang tengah.",
+        sequence: ["e4", "e5", "Nf3", "Nc6", "Bc4", "Bc5", "c3", "Nf6", "d4", "exd4", "cxd4", "Bb4+", "Bd2"]
+      },
+      {
+        id: "ita-gp-evans",
+        title: "3. The Evans Gambit",
+        description: "Senjata tajam. Korbankan pion b4 untuk tempo. Jika Hitam makan, Putih dapat c3 dan d4 secara instan. Hadiah dari para dewa untuk pecatur taktis.",
+        sequence: ["e4", "e5", "Nf3", "Nc6", "Bc4", "Bc5", "b4", "Bxb4", "c3", "Ba5", "d4", "exd4", "O-O"]
+      },
+
+      // --- JALAN TOL 2: TWO KNIGHTS DEFENSE (3... Nf6) ---
+      {
+        id: "ita-tk-friedliver",
+        title: "4. The Fried Liver Attack",
+        description: "Hitam menantang e4, kita balas dengan menekan f7. Jika Hitam merespons dengan Nxd5, kita korbankan Kuda di f7 untuk menarik Rajanya ke tengah. Pembantaian dimulai.",
+        sequence: ["e4", "e5", "Nf3", "Nc6", "Bc4", "Nf6", "Ng5", "d5", "exd5", "Nxd5", "Nxf7", "Kxf7", "Qf3+"]
+      },
+      {
+        id: "ita-tk-polerio",
+        title: "5. Polerio Defense (The Correct Defense)",
+        description: "Ini respons ideal Hitam terhadap Ng5. Mereka korbankan pion d5 demi mengusir Gajah kita. Putih harus main presisi untuk menjaga keunggulan material.",
+        sequence: ["e4", "e5", "Nf3", "Nc6", "Bc4", "Nf6", "Ng5", "d5", "exd5", "Na5", "Bb5+", "c6", "dxc6", "bxc6", "Be2"]
+      },
+      {
+        id: "ita-tk-traxler",
+        title: "6. Traxler Counterattack",
+        description: "Bar-bar. Hitam mengabaikan f7 dan balik menyerang f2. Jangan rakus memakan Benteng di h8, cukup makan f7 dengan Gajah agar Raja Hitam kehilangan hak rokade.",
+        sequence: ["e4", "e5", "Nf3", "Nc6", "Bc4", "Nf6", "Ng5", "Bc5", "Bxf7+", "Ke7", "Bb3"]
+      },
+
+      // --- GANG SEMPIT: SIDELINES & TRAPS ---
+      {
+        id: "ita-side-blackburne",
+        title: "7. Trap: Blackburne Shilling Gambit",
+        description: "Jebakan Hitam. Mereka menawarkan pion e5 gratis dengan Nd4. JANGAN DIMAKAN (Nxe5 membawa bencana). Cukup makan Kudanya dan menangkan pusat.",
+        sequence: ["e4", "e5", "Nf3", "Nc6", "Bc4", "Nd4", "Nxd4", "exd4", "O-O"]
+      },
+      {
+        id: "ita-side-rousseau",
+        title: "8. Refuting the Rousseau Gambit",
+        description: "Hitam mencoba King's Gambit terbalik dengan f5. Tetap tenang, jangan panik. Mainkan d3, amankan pusat, dan struktur Hitam akan rapuh sendirinya.",
+        sequence: ["e4", "e5", "Nf3", "Nc6", "Bc4", "f5", "d3", "Nf6", "O-O"]
+      },
+      {
+        id: "ita-side-hungarian",
+        title: "9. Hungarian Defense",
+        description: "Hitam bermain sangat pasif dengan Be7 untuk menghindari taktik. Hukum mereka dengan mengklaim seluruh ruang tengah menggunakan d4.",
+        sequence: ["e4", "e5", "Nf3", "Nc6", "Bc4", "Be7", "d4", "d6", "h3", "Nf6", "Nc3"]
+      },
+
+      // ==========================================
+      // LATIHAN FUNDAMENTAL (Skema Konseptual)
+      // ==========================================
+      {
+        id: "ita-fund-pin",
+        title: "Fundamental 1: The Absolute Pin",
+        description: "Skenario latihan: Memanfaatkan pin (ikatan) pada Kuda f6. Dengan posisi Gajah di g5, Kuda f6 tidak bisa bergerak karena ada Menteri di belakangnya. Ini melumpuhkan mobilitas Hitam.",
+        sequence: ["e4", "e5", "Nf3", "Nc6", "Bc4", "Bc5", "d3", "Nf6", "Nc3", "d6", "Bg5", "h6", "Bh4"]
+      },
+      {
+        id: "ita-fund-center-tension",
+        title: "Fundamental 2: Maintaining Tension",
+        description: "Skenario latihan: Kapan harus memakan pion tengah. Putih mendorong d4, namun tidak langsung memakan exd5. Membiarkan tensi pion di pusat memaksa Hitam membuat keputusan yang sulit.",
+        sequence: ["e4", "e5", "Nf3", "Nc6", "Bc4", "Bc5", "c3", "Nf6", "d4", "exd4", "cxd4", "Bb4+", "Nc3", "Nxe4", "O-O", "Bxc3", "d5"]
+      },
+      {
+        id: "ita-fund-f7-weakness",
+        title: "Fundamental 3: Exploiting the f7 Target",
+        description: "Skenario latihan: Menggabungkan kekuatan Gajah (c4) dan Kuda (g5) atau Menteri (f3) secara bersamaan ke titik buta f7. Pola serangan paling basic yang wajib ter-hardcode di otak.",
+        sequence: ["e4", "e5", "Nf3", "Nc6", "Bc4", "Bc5", "O-O", "Nf6", "Ng5", "O-O", "Nxf7", "Rxf7", "Bxf7+", "Kxf7"]
       }
     ]
   }
